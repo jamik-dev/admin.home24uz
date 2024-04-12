@@ -33,3 +33,103 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #92AFD3;
 }
+
+/* dialog and datepicker */
+.el-dialog__wrapper {
+  backdrop-filter: blur(5px);
+}
+
+.el-dialog__title,
+.el-date-table th,
+.el-picker-panel__icon-btn,
+.el-picker-panel.el-date-range-picker.el-popper,
+.el-date-editor .el-range-separator,
+.el-date-editor .el-range-input {
+  color: #C8D7E9;
+}
+
+.el-range-input {
+  background-color: inherit;
+}
+
+.el-picker-panel.el-date-range-picker.el-popper {
+  background-color: #0F1824;
+}
+
+.el-date-table td.in-range div,
+.el-date-table td.in-range div:hover,
+.el-date-table.is-week-mode .el-date-table__row.current div,
+.el-date-table.is-week-mode .el-date-table__row:hover div {
+  background-color: #1E2E3E;
+}
+
+.el-date-table td.prev-month,
+.el-date-table td.next-month {
+  color: #92AFD3;
+}
+
+
+.el-date-range-picker__content.is-left,
+.el-date-table th,
+.el-picker-panel.el-date-range-picker.el-popper {
+  border-color: #1C2E45;
+}
+
+/* Select option, Input, Pagination */
+.el-input__inner,
+.el-select-dropdown {
+  background-color: #0F1824;
+  border-color: #1C2E45;
+  color: #C8D7E9;
+  border-radius: 0.375rem;
+  font-weight: 600;
+}
+
+.el-input__inner::placeholder,
+.el-select-dropdown__item {
+  color: #92AFD3;
+}
+
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background-color: #1C2E45;
+}
+
+.el-popper[x-placement^=bottom] .popper__arrow {
+  border-bottom-color: #1C2E45;
+}
+
+.el-popper[x-placement^=bottom] .popper__arrow::after {
+  border-bottom-color: #0F1824;
+}
+
+.el-select-dropdown__item {
+  color: #C8D7E9;
+}
+
+.el-input__inner:hover,
+.el-input__inner:focus,
+.el-select:hover .el-input__inner {
+  border-color: #3B82F6;
+}
+
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev {
+  background-color: transparent;
+  color: #C8D7E9;
+}
+
+.el-pagination.is-background .el-pager li {
+  background-color: #0F1824;
+  border: 1px solid #1C2E45;
+  border-radius: 6px;
+}
+
+.el-pager li, .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev {
+  height: 32px;
+  line-height: 32px;
+  min-width: 32px!important;
+}
+
+.el-pagination.is-background .btn-prev:disabled, .el-pagination.is-background .btn-next:disabled{
+  color: #64748b80;
+}
