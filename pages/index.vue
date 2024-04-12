@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="py-6 px-10">
+    <div class="p-6">
       <el-dialog title="Tips" top="40vh" custom-class="!bg-dark !rounded-xl !border !border-dark-3 -translate-y-1/2" :visible.sync="dialogVisible"
         width="40%">
         <div class="px-8">
@@ -15,7 +15,7 @@
         </div>
       </el-dialog>
       <button @click="dialogVisible = true"
-        class="p-2 block ml-auto rounded-lg bg-blue hover:bg-blue-2 duration-200 mb-3 text-sm font-semibold">Изменить дату</button>
+        class="py-2 px-4 block ml-auto rounded-lg bg-blue hover:bg-blue-2 duration-200 mb-3 text-sm font-semibold">Изменить дату</button>
       <div class="grid grid-cols-12 gap-3">
         <div v-for="item in 6" :key="item"
           class="col-span-4 rounded-xl bg-dark py-4 px-6 space-y-4 border border-dark-3">
@@ -81,43 +81,4 @@ export default {
 </script>
 
 <style>
-.el-dialog__wrapper {
-  backdrop-filter: blur(5px);
-}
-
-.el-dialog__title,
-.el-date-table th,
-.el-picker-panel__icon-btn,
-.el-picker-panel.el-date-range-picker.el-popper,
-.el-date-editor .el-range-separator,
-.el-date-editor .el-range-input {
-  color: #C8D7E9;
-}
-
-.el-range-input {
-  background-color: inherit;
-}
-
-.el-picker-panel.el-date-range-picker.el-popper {
-  background-color: #0F1824;
-}
-
-.el-date-table td.in-range div,
-.el-date-table td.in-range div:hover,
-.el-date-table.is-week-mode .el-date-table__row.current div,
-.el-date-table.is-week-mode .el-date-table__row:hover div {
-  background-color: #1E2E3E;
-}
-
-.el-date-table td.prev-month,
-.el-date-table td.next-month {
-  color: #92AFD3;
-}
-
-
-.el-date-range-picker__content.is-left,
-.el-date-table th,
-.el-picker-panel.el-date-range-picker.el-popper {
-  border-color: #1C2E45;
-}
 </style>
