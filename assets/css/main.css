@@ -1,0 +1,35 @@
+@import './fonts.css';
+
+/* Basic style here */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+}
+
+body {
+  font-family: 'Public sans', sans-serif;
+  color: #c8d7e9;
+  background-color: #0f1824;
+}
+
+/* Modern Scrollbar Style */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #0f1824;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1C2E45;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #92AFD3;
+}
