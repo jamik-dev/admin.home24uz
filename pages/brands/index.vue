@@ -4,11 +4,11 @@
       <button
         class="py-2 px-4 ml-auto rounded-lg bg-blue hover:bg-blue-2 duration-200 mb-3 text-sm font-semibold flex items-center">
         <i class="el-icon-circle-plus text-lg mr-1"></i>
-        Добавить характеристика
+        Добавить бренд
       </button>
       <div class="rounded-xl bg-dark py-4 px-6 space-y-4 border border-dark-3">
         <div class="flex gap-2 justify-between">
-          <el-input v-model="search.characteristic" class="!w-2/3" placeholder="Группа характеристик"
+          <el-input v-model="search.brands" class="!w-2/3" placeholder="Поиск бренда"
             prefix-icon="el-icon-search">
           </el-input>
           <button class="w-10 h-10 rounded-lg bg-blue hover:bg-blue-2 duration-200 text-2xl">
@@ -20,7 +20,7 @@
             <thead class="text-left">
               <tr class="text-sm">
                 <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">№</th>
-                <th class="px-3.5 py-2.5 w-full font-semibold border-b border-dark-3">НАЗВАНИЕ</th>
+                <th class="px-3.5 py-2.5 w-full font-semibold border-b border-dark-3">БРЕНД</th>
                 <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
@@ -32,7 +32,12 @@
                     #{{ item }}</div>
                 </td>
                 <td class="px-3.5 py-2.5 border-y border-dark-3">
-                  <h6 class="font-semibold">Общие характеристики смартфона</h6>
+                  <div class="flex items-center gap-2">
+                    <div class="border border-light rounded-lg overflow-hidden h-12 w-12">
+                      <img src="~/assets/images/png/1.png" alt="Product images" class="object-cover h-full w-full">
+                    </div>
+                    <h6>Smartest Printed T-shirt</h6>
+                  </div>
                 </td>
                 <td class="px-3.5 py-2.5 border-y border-dark-3 text-center">
                   <div class="relative space-x-1">
@@ -74,7 +79,7 @@ export default {
   data: () => {
     return {
       search: {
-        characteristic: ''
+        brands: ''
       }
     }
   }
