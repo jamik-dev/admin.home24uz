@@ -29,7 +29,7 @@
               <localCategoriesRow :key="data.id" :data="data" :id="data.id" />
             </tbody>
           </table>
-          <div v-if="false" class="noresult">
+          <div v-if="false">
             <div class="py-6 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -113,20 +113,4 @@ export default {
 }
 </script>
 <style>
-.el-checkbox__inner {
-  height: 20px;
-  width: 20px;
-  background-color: #1C2E45;
-  border-color: #1C2E45;
-  border-radius: 4px;
-}
-
-.el-checkbox__inner::after {
-  left: 25%;
-  top: 50%;
-}
-
-.el-checkbox__input.is-checked .el-checkbox__inner::after {
-  transform: rotate(45deg) scaleY(1.5) translate(-50%, -50%);
-}
 </style>

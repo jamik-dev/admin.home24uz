@@ -130,6 +130,28 @@ body {
   min-width: 32px!important;
 }
 
+.el-pagination.is-background .el-pager li {
+  color: #92AFD3;
+}
+
 .el-pagination.is-background .btn-prev:disabled, .el-pagination.is-background .btn-next:disabled{
   color: #64748b80;
+}
+
+/* checkbox */
+.el-checkbox__inner {
+  height: 20px;
+  width: 20px;
+  background-color: #1C2E45;
+  border-color: #1C2E45;
+  border-radius: 4px;
+}
+
+.el-checkbox__inner::after {
+  left: 25%;
+  top: 50%;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner::after {
+  transform: rotate(45deg) scaleY(1.5) translate(-50%, -50%);
 }
