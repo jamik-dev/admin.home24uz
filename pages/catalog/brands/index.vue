@@ -156,29 +156,4 @@ export default {
 }
 </script>
 <style>
-.el-switch__core {
-  height: 26px;
-  border-radius: 40px;
-}
-
-.el-switch__core:after {
-  width: 20px;
-  height: 20px;
-  top: 2px;
-  left: 2px;
-}
-
-.el-switch.is-checked .el-switch__core::after {
-  margin-left: -21px;
-}
-
-.el-upload--picture-card {
-  background-color: #0F1824;
-  border-color: #1C2E45;
-}
-
-.el-upload-list--picture-card .el-upload-list__item {
-  border-color: #1C2E45;
-  background-color: #0F1824;
-}
 </style>
