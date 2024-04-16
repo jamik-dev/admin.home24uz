@@ -19,10 +19,10 @@
           <table v-if="true" class="w-full whitespace-nowrap duration-200">
             <thead class="text-left">
               <tr class="text-sm w-full">
-                <th class="px-3.5 py-2.5 w-1/4 font-semibold border-b border-dark-3">АТТРИБУТЫ</th>
-                <th class="px-3.5 py-2.5 w-1/3 font-semibold border-b border-dark-3 text-center">ПАРАМЕТРЫ</th>
-                <th class="px-3.5 py-2.5 w-1/3 font-semibold border-b border-dark-3 text-center">КАТЕГОРИИ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">ДЕЙСТВИЯ</th>
+                <th class="px-3.5 py-2.5 w-1/4 font-semibold bg-dark-3">АТТРИБУТЫ</th>
+                <th class="px-3.5 py-2.5 w-1/3 font-semibold bg-dark-3 text-center">ПАРАМЕТРЫ</th>
+                <th class="px-3.5 py-2.5 w-1/3 font-semibold bg-dark-3 text-center">КАТЕГОРИИ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
             <tbody>

@@ -73,11 +73,11 @@
           <table v-if="true" class="w-full whitespace-nowrap">
             <thead class="text-left">
               <tr class="text-sm">
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">
                   <i class="el-icon-s-fold text-2xl"></i>
                 </th>
-                <th class="px-3.5 py-2.5 w-full font-semibold border-b border-dark-3">ПРОДУКТЫ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ДЕЙСТВИЯ</th>
+                <th class="px-3.5 py-2.5 w-full font-semibold bg-dark-3">ПРОДУКТЫ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
             <draggable v-model="list" tag="tbody" group="items" :options="dragOptions" @start="isDragging = true" @end="isDragging = false">
