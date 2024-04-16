@@ -1,8 +1,9 @@
 <template>
   <main>
     <div class="p-6">
-      <el-dialog title="Редактировать" top="50vh" custom-class="!bg-dark !rounded-xl !border !border-dark-3 -translate-y-1/2"
-        :visible.sync="showcaseModal" width="40%">
+      <el-dialog title="Редактировать" top="50vh"
+        custom-class="!bg-dark !rounded-xl !border !border-dark-3 -translate-y-1/2" :visible.sync="showcaseModal"
+        width="40%">
         <div class="px-8">
           <el-tabs v-model="activeTab">
             <el-tab-pane label="Uzbek" name="uzbek">
@@ -79,10 +80,10 @@
                 <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
-            <draggable tag="tbody" v-bind="dragOptions" @start="isDragging = true" @end="isDragging = false">
+            <draggable v-model="list" tag="tbody" group="items" :options="dragOptions" @start="isDragging = true" @end="isDragging = false">
               <!-- <transition-group type="transition" name="flip-list"> -->
-              <tr v-for="item in 10" :key="item"
-                class="hover:bg-dark-2 duration-200 cursor-grab active:cursor-grabbing">
+              <tr v-for="item in list" :key="item.id"
+                class="hover:bg-dark-2 cursor-grab active:cursor-grabbing">
                 <td class="px-3.5 py-2.5 border-y border-dark-3">
                   <div
                     class="transition-all duration-150 ease-linear product_code text-custom-500 hover:text-custom-600">
@@ -143,6 +144,11 @@ export default {
         showcaseName_ru: '',
         product_ru: [],
       },
+      list: [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 }
+      ],
       options: [{
         value: 'Option1',
         label: 'Option1'
@@ -165,19 +171,19 @@ export default {
   computed: {
     dragOptions() {
       return {
-        animation: 0,
-        group: "description",
+        animation: 300,
+        group: 'description',
         disabled: false,
-        ghostClass: "ghost"
+        ghostClass: 'ghost'
       };
     }
   }
 }
 </script>
 <style>
-.flip-list-move {
+/* .flip-list-move {
   transition: transform 0.5s;
-}
+} */
 
 .ghost {
   opacity: 0.8;
