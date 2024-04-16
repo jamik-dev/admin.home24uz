@@ -18,11 +18,11 @@
           <table v-if="true" class="w-full whitespace-nowrap duration-200">
             <thead class="text-left">
               <tr class="text-sm w-full">
-                <th class="px-3.5 py-2.5 w-1/2 font-semibold border-b border-dark-3">ПРОДУКТ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ИКОНА</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">ПОПУЛЯРНЫЙ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">СТАТУС</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">ДЕЙСТВИЯ</th>
+                <th class="px-3.5 py-2.5 w-1/2 font-semibold bg-dark-3">ПРОДУКТ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ИКОНА</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">ПОПУЛЯРНЫЙ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">СТАТУС</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
             <tbody :id="'categories-tbody-' + data.id" v-for="data in dataTree" :key="data.name">

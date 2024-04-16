@@ -19,9 +19,9 @@
           <table v-if="true" class="w-full whitespace-nowrap">
             <thead class="text-left">
               <tr class="text-sm">
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">№</th>
-                <th class="px-3.5 py-2.5 w-full font-semibold border-b border-dark-3">НАЗВАНИЕ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ДЕЙСТВИЯ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">№</th>
+                <th class="px-3.5 py-2.5 w-full font-semibold bg-dark-3">НАЗВАНИЕ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
             <tbody>

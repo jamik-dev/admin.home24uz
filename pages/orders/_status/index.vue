@@ -68,14 +68,14 @@
           <table v-if="true" class="w-full whitespace-nowrap">
             <thead class="text-left">
               <tr class="text-sm">
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ЗАКАЗ ID</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">КЛИЕНТ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">НОМЕР ТЕЛЕФОНА</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">ДАТА</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">ОПЕРАТОР</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">ОБЛАСТЬ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">КОЛ-ВО</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3 text-center">СТАТУС</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ЗАКАЗ ID</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">КЛИЕНТ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">НОМЕР ТЕЛЕФОНА</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">ДАТА</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">ОПЕРАТОР</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">ОБЛАСТЬ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">КОЛ-ВО</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3 text-center">СТАТУС</th>
               </tr>
             </thead>
             <tbody>

@@ -7,7 +7,7 @@
         Добавить продукт
       </button>
       <div class="rounded-xl bg-dark py-4 px-6 space-y-4 border border-dark-3">
-        <div class="flex gap-2">
+        <div class="flex gap-2 justify-between">
           <el-input v-model="search.product" class="!w-4/12" placeholder="Поиск продукта" prefix-icon="el-icon-search">
           </el-input>
           <el-input v-model="search.category" class="!w-4/12" placeholder="Фильтр по категориям"
@@ -21,7 +21,7 @@
             <el-option v-for="item in 3" :key="3" :label="item" :value="item">
             </el-option>
           </el-select>
-          <button class="w-10 h-10 rounded-lg bg-blue hover:bg-blue-2 duration-200 text-2xl">
+          <button class="w-12 h-10 rounded-lg bg-blue hover:bg-blue-2 duration-200 text-2xl">
             <i class="el-icon-refresh"></i>
           </button>
         </div>
@@ -29,12 +29,12 @@
           <table v-if="true" class="w-full whitespace-nowrap">
             <thead class="text-left">
               <tr class="text-sm">
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">№</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ПРОДУКТ</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">КОЛ-ВО</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ЦЕНА</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">СТАТУС</th>
-                <th class="px-3.5 py-2.5 font-semibold border-b border-dark-3">ДЕЙСТВИЯ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">№</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ПРОДУКТ</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">КОЛ-ВО</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ЦЕНА</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">СТАТУС</th>
+                <th class="px-3.5 py-2.5 font-semibold bg-dark-3">ДЕЙСТВИЯ</th>
               </tr>
             </thead>
             <tbody>
