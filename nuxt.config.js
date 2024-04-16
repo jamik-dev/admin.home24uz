@@ -2,6 +2,10 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  loading: {
+    color: '#3B82F6'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'admin.home24uz',
