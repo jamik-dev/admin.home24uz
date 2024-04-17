@@ -2,6 +2,16 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in',
+  },
+
+  layoutTransition: {
+    name: 'layout',
+    mode: 'out-in',
+  },
+
   loading: {
     color: '#3B82F6'
   },
