@@ -3,12 +3,12 @@ export default {
   ssr: false,
 
   pageTransition: {
-    name: 'page',
+    name: 'smoothy',
     mode: 'out-in',
   },
 
   layoutTransition: {
-    name: 'layout',
+    name: 'smoothy',
     mode: 'out-in',
   },
 
