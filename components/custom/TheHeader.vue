@@ -6,16 +6,38 @@
       <p class="text-sm">Catalog - Dashboard</p>
     </div>
     <div class="space-x-8 flex items-center">
-      <i class="el-icon-chat-line-round text-2xl cursor-pointer"></i>
-      <i class="el-icon-user text-2xl cursor-pointer"></i>
+      <button>
+        <i class="el-icon-chat-line-round text-2xl cursor-pointer"></i>
+      </button>
+      <el-dropdown @command="authLogoutUser">
+        <button class="text-light hover:text-blue">
+          <i class="el-icon-user text-2xl text-current duration-200"></i>
+        </button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>Logout</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </header>
 </template>
 <script>
+import {mapActions} from 'vuex';
 export default {
-  
+  methods: {
+    ...mapActions('auth', ['authLogout']),
+    async authLogoutUser() {
+      const response = await this.authLogout();
+      if (response) {
+        this.$notify({
+          title: 'Success',
+          message: 'You have been logged out',
+          type: 'success'
+        });
+        this.$router.push('/login');
+      }
+    }
+  }
 }
 </script>
-<style lang="">
-  
+<style>
 </style>
