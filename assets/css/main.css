@@ -248,3 +248,18 @@ body {
 .el-tabs__item.is-active {
   font-weight: 700;
 }
+
+/* dropdown */
+.el-dropdown-menu {
+  background-color: #0F1824;
+  border-color: #1C2E45;
+}
+
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #1C2E45;
+  color: #C8D7E9;
+}
+
+.el-dropdown-menu__item {
+  color: #C8D7E9;
+}
