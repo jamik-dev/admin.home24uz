@@ -29,7 +29,15 @@ export default {
   },
   mounted() {
     this.sideBarWidth = document.querySelector('#sidebarWrapper').clientWidth;
+    window.addEventListener('resize', ()=> {
+      this.sideBarWidth = document.querySelector('#sidebarWrapper').clientWidth;
+    });
   },  
+  destroyed() {
+    window.removeEventListener('resize', ()=> {
+      this.sideBarWidth = document.querySelector('#sidebarWrapper').clientWidth;
+    });
+  },
   computed: {
     ...mapGetters('loader', ['isLoading'])
   }

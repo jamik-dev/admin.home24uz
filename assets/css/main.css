@@ -188,6 +188,16 @@ body {
   transform: rotate(45deg) scaleY(1.5) translate(-50%, -50%);
 }
 
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner {
+  background-color: #2563EB;
+  border-color: #2563EB;
+}
+
+.el-checkbox__input.is-disabled .el-checkbox__inner {
+  background-color: #1C2E45;
+  border-color: #1C2E45;
+}
+
 /* uploader and switcher */
 .el-switch__core {
   height: 26px;
