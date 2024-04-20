@@ -1,10 +1,13 @@
-export default ({ $axios, redirect, error }, inject) => {
+export default ({ $axios, redirect, store }, inject) => {
   const axios = $axios.create({
     baseURL: process.env.BASE_URL || 'https://e-shop.ndc.uz/api/admin',
   })
 
   axios.interceptors.response.use(
-    (response) => response,
+    (response) => {
+      store.commit('loader/SET_LOADING', false);
+      return response;
+    },
     (err) => {
       if (err.response && err.response.status === 401) {
         localStorage.removeItem('token');
@@ -15,6 +18,7 @@ export default ({ $axios, redirect, error }, inject) => {
   )
 
   axios.interceptors.request.use((config) => {
+    store.commit('loader/SET_LOADING', true);
     config.headers.common['Authorization'] = `Bearer ${process.server ? '' : localStorage.getItem('token') ? localStorage.getItem('token') : ''}`
     return config
   })
