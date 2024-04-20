@@ -37,6 +37,16 @@ body {
   transform: translateY(0);
 }
 
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave {
+  opacity: 1;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
 /* Modern Scrollbar Style */
 ::-webkit-scrollbar {
   width: 4px;
