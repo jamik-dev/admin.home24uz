@@ -28,5 +28,17 @@ export const actions = {
     .then(response => {
       return response.data;
     })
+  },
+  async deleteBrand(_, id) {
+    return await this.$axios.delete(`/brands/${id}`)
+    .then(response => {
+      return response.data;
+    })
+  },
+  async updateBrand(_, {id, name, logo, is_top, slug}) {
+    return await this.$axios.put(`/brands/${id}`, {name, logo, is_top, slug})
+    .then(response => {
+      return response.data;
+    })
   }
 }

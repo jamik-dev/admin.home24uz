@@ -18,11 +18,11 @@
               </div>
             </el-form-item>
             <el-form-item>
-              <el-upload ref="uploader" :limit="1" action="#" :on-change="handleUploader" list-type="picture-card"
+              <el-upload ref="uploader" :file-list="fileList" :limit="1" action="#" :on-change="handleUploader" list-type="picture-card"
                 :auto-upload="false">
                 <i class="el-icon-picture"></i>
                 <div slot="file" slot-scope="{file}">
-                  <img v-if="path" class="el-upload-list__item-thumbnail object-contain" :src="path" alt="brand img">
+                  <img v-if="add.url" class="el-upload-list__item-thumbnail object-contain" :src="add.url" alt="brand img">
                   <div class="flex w-full h-full justify-center items-center" v-else>
                     <i class="el-icon-loading text-3xl text-blue"></i>
                   </div>
@@ -38,13 +38,13 @@
               </el-upload>
               <el-dialog custom-class="!bg-dark !rounded-xl !border !border-dark-3" width="50%" append-to-body
                 :visible.sync="addPicDialog">
-                <img width="100%" :src="path" alt="brand image">
+                <img width="100%" :src="add.url" alt="brand image">
               </el-dialog>
             </el-form-item>
             <div class="flex justify-end mt-4 pt-4 space-x-2 border-t border-dark-3">
-              <button @click.prevent="clearForm"
+              <button @click.prevent="brandModal = false"
                 class="bg-dark-3 font-semibold rounded-lg py-2 px-4 text-light">Отмена</button>
-              <button @click.prevent="addNewBrand"
+              <button @click.prevent="edit ? updateNewBrand() : addNewBrand()"
                 class="bg-blue font-semibold rounded-lg py-2 px-4 text-light hover:bg-blue-2 duration-200 flex items-center">
                 <i v-if="!loading" class="el-icon-circle-plus text-lg mr-1"></i>
                 <i v-else class="el-icon-loading text-lg mr-1"></i>
@@ -81,7 +81,7 @@
                 <td class="px-3.5 py-2.5 border-y border-dark-3">
                   <div
                     class="transition-all duration-150 ease-linear product_code text-custom-500 hover:text-custom-600">
-                    #{{ index + 1 }}</div>
+                    #{{ (parseInt($route.query.page) - 1)*parseInt($route.query.per_page) + index + 1 }}</div>
                 </td>
                 <td class="px-3.5 py-2.5 border-y border-dark-3">
                   <div class="flex items-center gap-2">
@@ -94,12 +94,14 @@
                 </td>
                 <td class="px-3.5 py-2.5 border-y border-dark-3 text-center">
                   <div class="relative space-x-1">
-                    <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-blue duration-200">
+                    <button @click="openEdit(brand.id)" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-blue duration-200">
                       <i class="el-icon-edit"></i>
                     </button>
-                    <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
-                      <i class="el-icon-delete"></i>
-                    </button>
+                    <el-popconfirm @confirm="removeBrand(brand.id)" title="Вы уверены, что хотите удалить?">
+                      <button slot="reference" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
+                        <i class="el-icon-delete"></i>
+                      </button>
+                    </el-popconfirm>
                   </div>
                 </td>
               </tr>
@@ -120,7 +122,7 @@
           </div>
         </div>
         <div v-if="brandsList.length > 0">
-          <el-pagination class="ml-auto w-fit" background layout="prev, pager, next" :total="brands?.last_page">
+          <el-pagination class="ml-auto w-fit" background layout="prev, pager, next" @current-change="pageChange" :current-page="parseInt($route.query.page)" :page-size="parseInt($route.query.per_page)" :total="brands?.total">
           </el-pagination>
         </div>
       </div>
@@ -138,7 +140,12 @@ export default {
       add: {
         brand: '',
         popular_brand: false,
+        url: '',
+        slug: ''
       },
+      edit: false,
+      id: null,
+      fileList: [],
       file: null,
       brandModal: false,
       addPicDialog: false,
@@ -153,6 +160,11 @@ export default {
     this.getBrands();
   },
   watch: {
+    '$route': function (to, from) {
+      if (to.query.page !== from.query.page) {
+        this.getBrands();
+      }
+    },
     'search.brands': function (newValue, oldValue) {
       if (newValue !== oldValue && newValue !== undefined) {
         this.SET_LOADING(true);
@@ -165,11 +177,24 @@ export default {
         }, 500);
       }
     },
+    'path': function (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.add.url = newValue;
+      }
+    },
     'brands': function (newValue, oldValue) {
       if (newValue !== oldValue) {
         this.brandsList = this.brands?.data;
       }
     },
+    'brandModal': function (newValue) {
+      if (!newValue) {
+        this.clearForm();
+        if(this.fileList) {
+          this.handleRemove(this.fileList[0]);
+        }
+      }
+    }
   },
   computed: {
     ...mapGetters({
@@ -185,13 +210,18 @@ export default {
     ...mapActions({
       getBrands: 'brands/getBrands',
       addBrand: 'brands/addBrand',
+      deleteBrand: 'brands/deleteBrand',
+      updateBrand: 'brands/updateBrand',
       setFile: 'upload/setFile'
     }),
+    pageChange(page) {
+      this.$router.replace({ query: { ...this.$route.query, page } });
+    },
     addNewBrand() {
       this.$refs.addBrandForm.validate(async (valid) => {
         if (valid) {
           this.loading = true;
-          const response = await this.addBrand({ name: this.add.brand, is_top: this.add.popular_brand, logo: this.path });
+          const response = await this.addBrand({ name: this.add.brand, is_top: this.add.popular_brand, logo: this.add.url});
           this.loading = false;
           if (response.brand) {
             this.$notify({
@@ -199,7 +229,7 @@ export default {
               message: 'Бренд успешно добавлен',
               type: 'success'
             });
-            this.clearForm();
+            this.brandModal = false;
             this.getBrands();
           } else {
             this.$notify({
@@ -217,6 +247,54 @@ export default {
         }
       })
     },
+    updateNewBrand() {
+      this.$refs.addBrandForm.validate(async (valid) => {
+        if (valid) {
+          this.loading = true;
+          const response = await this.updateBrand({ id: this.id, name: this.add.brand, is_top: this.add.popular_brand, logo: this.add.url, slug: this.add.slug});
+          this.loading = false;
+          if (response.brand) {
+            this.$notify({
+              title: 'Успешно',
+              message: 'Бренд успешно обновлен',
+              type: 'success'
+            });
+            this.brandModal = false;
+            this.getBrands();
+          } else {
+            this.$notify({
+              title: 'Ошибка',
+              message: 'Что-то пошло не так',
+              type: 'error'
+            });
+          }
+        } else {
+          this.$notify({
+            title: 'Ошибка',
+            message: 'Пожалуйста, заполните все поля',
+            type: 'error'
+          });
+        }
+      })
+    },
+    async removeBrand(id) {
+      console.log(id);
+      const response = await this.deleteBrand(id);
+      if(response.message) {
+        this.$notify({
+          title: 'Успешно',
+          message: 'Бренд успешно удален',
+          type: 'success'
+        });
+        this.getBrands();
+      } else {
+        this.$notify({
+          title: 'Ошибка',
+          message: 'Что-то пошло не так',
+          type: 'error'
+        });
+      }
+    },
     handlePictureCardPreview() {
       this.addPicDialog = true;
     },
@@ -231,6 +309,37 @@ export default {
         this.setFile(file);
         this.file = file;
       }
+    },
+    openEdit(id) {
+      this.edit = true;
+      this.id = id;
+      const brand = this.brandsList.find(item => item.id === id);
+      console.log(this.$refs.uploader)
+      if(brand) {
+        this.brandModal = true;
+        this.add = {
+          brand: brand.name,
+          popular_brand: !!brand.is_top,
+          url: brand.lg_logo,
+          slug: brand.slug
+        }
+        if(brand.lg_logo) {
+          this.fileList = [{
+            name: brand.name,
+            url: brand.lg_logo
+          }];
+          setTimeout(() => {
+            document.querySelector('.el-upload.el-upload--picture-card').style.display = 'none';
+          }, 100)
+        }
+      } else {
+        this.$notify({
+          title: 'Ошибка',
+          message: 'Что-то пошло не так',
+          type: 'error'
+        });
+      }
+      
     },
     clearFilters() {
       if (this.search.brands) {
@@ -251,17 +360,22 @@ export default {
       }
     },
     clearForm() {
-      this.$refs.addBrandForm.resetFields();
+      this.add = {
+        brand: '',
+        popular_brand: false,
+        url: '',
+        slug: ''
+      }
+      this.id = null;
+      this.edit = false;
       this.CLEAR_PATH();
-      this.handleRemove(this.file);
-      this.file = null;
-      this.brandModal = false;
+      if(this.file) {
+        this.handleRemove(this.file);
+        this.file = null;
+      }
     }
   }
 }
 </script>
 <style>
-.el-upload-list--picture-card .el-upload-list__item div {
-  height: 100%;
-}
 </style>

@@ -225,6 +225,10 @@ body {
   background-color: #0F1824;
 }
 
+.el-upload-list--picture-card .el-upload-list__item div {
+  height: 100%;
+}
+
 /* select and tab */
 .el-select__input {
   color: #C8D7E9;
@@ -281,5 +285,13 @@ body {
 }
 
 .el-dropdown-menu__item {
+  color: #C8D7E9;
+}
+
+/* popconfirm */
+.el-popover {
+  background: #0F1824;
+  border: 1px solid #1C2E45;
+  border-radius: 12px;
   color: #C8D7E9;
 }
