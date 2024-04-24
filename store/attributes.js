@@ -22,5 +22,11 @@ export const actions = {
     .catch(error => {
       return error.response.data;
     });
+  },
+  async deleteAttribute(_, id) {
+    return await this.$axios.delete(`/attributes/${id}`)
+    .then(response => {
+      return response.data;
+    })
   }
 }

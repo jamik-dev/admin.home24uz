@@ -39,9 +39,11 @@
                     <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-blue duration-200">
                       <i class="el-icon-edit"></i>
                     </button>
-                    <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
-                      <i class="el-icon-delete"></i>
-                    </button>
+                    <el-popconfirm @confirm="removeCharacteristic(characteristicItem.id)" title="Вы уверены, что хотите удалить?">
+                      <button slot="reference" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
+                        <i class="el-icon-delete"></i>
+                      </button>
+                    </el-popconfirm>
                   </div>
                 </td>
               </tr>
@@ -110,7 +112,25 @@ export default {
   },
   methods: {
     ...mapMutations('loader', ['SET_LOADING']),
-    ...mapActions('characteristics', ['getCharacteristics']),
+    ...mapActions('characteristics', ['getCharacteristics', 'deleteCharacteristic']),
+    async removeCharacteristic(id) {
+      console.log(id);
+      const response = await this.deleteCharacteristic(id);
+      if(response.message) {
+        this.$notify({
+          title: 'Успешно',
+          message: response.message,
+          type: 'success'
+        });
+        this.getCharacteristics();
+      } else {
+        this.$notify({
+          title: 'Ошибка',
+          message: 'Что-то пошло не так',
+          type: 'error'
+        });
+      }
+    },
     clearFilters() {
       if (this.search.characteristic) {
         this.search = {

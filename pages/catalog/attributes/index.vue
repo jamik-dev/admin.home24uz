@@ -49,9 +49,11 @@
                     <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-blue duration-200">
                       <i class="el-icon-edit"></i>
                     </button>
-                    <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
-                      <i class="el-icon-delete"></i>
-                    </button>
+                    <el-popconfirm v-if="attribute?.name.ru !== 'Цвет'" @confirm="removeAttribute(attribute.id)" title="Вы уверены, что хотите удалить?">
+                      <button slot="reference" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
+                        <i class="el-icon-delete"></i>
+                      </button>
+                    </el-popconfirm>
                   </div>
                 </td>
               </tr>
@@ -120,7 +122,24 @@ export default {
   },
   methods: {
     ...mapMutations('loader', ['SET_LOADING']),
-    ...mapActions('attributes', ['getAttributes']),
+    ...mapActions('attributes', ['getAttributes', 'deleteAttribute']),
+    async removeAttribute(id) {
+      const response = await this.deleteAttribute(id);
+      if (response.message) {
+        this.$notify({
+          title: 'Успешно',
+          message: 'Аттрибут успешно удален',
+          type: 'success'
+        });
+        this.getAttributes();
+      } else {
+        this.$notify({
+          title: 'Ошибка',
+          message: 'Ошибка при удалении аттрибута',
+          type: 'error'
+        });
+      }
+    },
     clearFilters() {
       if (this.search.attrs) {
         this.search = {

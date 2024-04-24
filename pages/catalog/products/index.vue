@@ -73,9 +73,11 @@
                     <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-blue duration-200">
                       <i class="el-icon-edit"></i>
                     </button>
-                    <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
-                      <i class="el-icon-delete"></i>
-                    </button>
+                    <el-popconfirm @confirm="removeProduct(product?.id)" title="Вы уверены, что хотите удалить?">
+                      <button slot="reference" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
+                        <i class="el-icon-delete"></i>
+                      </button>
+                    </el-popconfirm>
                   </div>
                 </td>
               </tr>
@@ -201,6 +203,7 @@ export default {
   methods: {
     ...mapActions({
       getProducts: 'products/getProducts',
+      deleteProduct: 'products/deleteProduct',
       getCategories: 'categories/getCategories'
     }),
     ...mapMutations({
@@ -228,6 +231,23 @@ export default {
             .indexOf(query.toLowerCase()) > -1;
         });
       }, 300);
+    },
+    async removeProduct(id) {
+      const response = await this.deleteProduct(id);
+      if (response.message) {
+        this.$notify({
+          title: 'Успешно',
+          message: response.message,
+          type: 'success'
+        });
+        this.getProducts();
+      } else {
+        this.$notify({
+          title: 'Ошибка',
+          message: 'Что-то пошло не так',
+          type: 'error'
+        });
+      }
     },
     clearFilters() {
       this.search = {

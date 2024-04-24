@@ -38,9 +38,11 @@
         <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-blue duration-200">
           <i class="el-icon-edit"></i>
         </button>
-        <button class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
-          <i class="el-icon-delete"></i>
-        </button>
+        <el-popconfirm @confirm="emitId(data)" title="Вы уверены, что хотите удалить?">
+          <button slot="reference" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
+            <i class="el-icon-delete"></i>
+          </button>
+        </el-popconfirm>
       </div>
     </td>
     <teleport v-if="openChild" :to="'#categories-tbody-' + id">
@@ -68,6 +70,12 @@ export default {
       openChild: false
     }
   },
+  methods: {
+    emitId(id) {
+      console.log(id)
+      this.$emit('destroy-category', id);
+    }
+  }
 }
 </script>
 <style></style>

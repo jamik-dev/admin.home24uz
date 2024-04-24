@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody :id="'categories-tbody-' + data.id" v-for="data in categoriesList" :key="data.id">
-              <localCategoriesRow :key="data.id" :data="data" :id="data.id" />
+              <localCategoriesRow  @destroy-category="removeCategory" :key="data.id" :data="data" :id="data.id" />
             </tbody>
           </table>
           <div v-if="categoriesList.length === 0">
@@ -108,11 +108,29 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCategories: 'categories/getCategories'
+      getCategories: 'categories/getCategories',
+      deleteCategory: 'categories/deleteCategory'
     }),
     ...mapMutations({
       SET_LOADING: 'loader/SET_LOADING'
     }),
+    async removeCategory(id) {
+      const response = await this.deleteCategory(id);
+      if (response.message) {
+        this.$notify({
+          title: 'Успешно',
+          message: response.message,
+          type: 'success'
+        });
+        this.getCategories();
+      } else {
+        this.$notify({
+          title: 'Ошибка',
+          message: 'Что-то пошло не так',
+          type: 'error'
+        });
+      }
+    },
     filterCategories() {
       this.SET_LOADING(true);
       setTimeout(() => {

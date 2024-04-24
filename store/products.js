@@ -22,6 +22,12 @@ export const actions = {
     .catch(error => {
       return error.response.data;
     });
+  },
+  async deleteProduct(_, id) {
+    return await this.$axios.delete(`/products/${id}`)
+    .then(response => {
+      return response.data;
+    })
   }
 }
 
