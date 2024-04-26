@@ -34,10 +34,10 @@
             <span>Витрины</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/showcases/case/1">
+            <el-menu-item v-for="showcase in showcases" :key="showcase.id" :index="`/showcases/case/${showcase.id}`">
               <template slot="title">
                 <span class="h-[5px] w-[5px] mr-3 inline-block bg-current rounded-full"></span>
-                <span>Витрина 1</span>
+                <span>{{showcase.name.ru}}</span>
               </template>
             </el-menu-item>
           </el-menu-item-group>
@@ -135,6 +135,7 @@
   </aside>
 </template>
 <script>
+import {mapGetters, mapActions} from 'vuex';
 export default {
   data: () => {
     return {
@@ -158,7 +159,18 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapGetters({
+      showcases: 'showcases/showcases'
+    })
+  },
+  mounted() {
+    this.getShowcases()
+  },
   methods: {
+    ...mapActions({
+      getShowcases: 'showcases/getShowcases'
+    }),
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
