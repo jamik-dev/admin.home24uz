@@ -140,14 +140,14 @@ export default {
   data: () => {
     return {
       ordersList: [
-        { name: 'Все заказы', slug: 'all-orders' },
-        { name: 'Новые заказы', slug: 'new-orders' },
-        { name: 'Принятые заказы', slug: 'accepted-orders' },
-        { name: 'Ожидание', slug: 'pending-orders' },
-        { name: 'В доставке', slug: 'delivery-orders' },
-        { name: 'Возврат', slug: 'returned-orders' },
-        { name: 'Доставленные', slug: 'done-orders' },
-        { name: 'Отмененные', slug: 'canceled-orders' },
+        { name: 'Все заказы', slug: 'all' },
+        { name: 'Новые заказы', slug: 'new' },
+        { name: 'Принятые заказы', slug: 'accepted' },
+        { name: 'Ожидание', slug: 'pending' },
+        { name: 'В доставке', slug: 'delivery' },
+        { name: 'Возврат', slug: 'returned' },
+        { name: 'Доставленные', slug: 'done' },
+        { name: 'Отмененные', slug: 'canceled' },
         { name: 'Заявки', slug: 'applications' },
       ],
       catalogList: [
