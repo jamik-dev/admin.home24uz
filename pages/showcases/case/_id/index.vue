@@ -5,61 +5,41 @@
         custom-class="!bg-dark !rounded-xl !border !border-dark-3 -translate-y-1/2" :visible.sync="showcaseModal"
         width="40%">
         <div class="px-8">
-          <el-tabs v-model="activeTab">
-            <el-tab-pane label="Uzbek" name="uzbek">
-              <el-form :model="add" ref="updateShowcaseModal">
+          <el-form :model="add" ref="updateShowcaseModal">
+            <el-tabs v-model="activeTab">
+              <el-tab-pane label="Uzbek" name="uzbek">
                 <el-form-item prop="showcaseName_uz"
                   :rules="[{ required: true, message: 'Please input Заголовок name', trigger: 'blur' }]">
                   <p class="text-light font-semibold">Заголовок <span class="text-blue">*</span></p>
                   <el-input v-model="add.showcaseName_uz" class="!w-full" placeholder="Зоговолок"></el-input>
                 </el-form-item>
-                <el-form-item prop="products">
-                  <p class="text-light font-semibold">Продукт</p>
-                  <el-select class="!w-full" v-model="add.products" multiple placeholder="Select">
-                    <el-option v-for="product in actualProducts" :key="product.id" :label="product.name.ru"
-                      :value="product.id">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-                <div class="flex justify-end mt-4 pt-4 space-x-2 border-t border-dark-3">
-                  <button @click.prevent="showcaseModal = false"
-                    class="bg-dark-3 font-semibold rounded-lg py-2 px-4 text-light">Отмена</button>
-                  <button @click.prevent="updateShowcaseProduct"
-                    class="bg-blue font-semibold rounded-lg py-2 px-4 text-light hover:bg-blue-2 duration-200 flex items-center">
-                    <i class="el-icon-circle-plus text-lg mr-1"></i>
-                    Сохранить
-                  </button>
-                </div>
-              </el-form>
-            </el-tab-pane>
-            <el-tab-pane label="Russian" name="russian">
-              <el-form :model="add" ref="updateShowcaseModal2">
+              </el-tab-pane>
+              <el-tab-pane label="Russian" name="russian">
                 <el-form-item prop="showcaseName_ru"
                   :rules="[{ required: true, message: 'Please input Заголовок name', trigger: 'blur' }]">
                   <p class="text-light font-semibold">Заголовок <span class="text-blue">*</span></p>
                   <el-input v-model="add.showcaseName_ru" class="!w-full" placeholder="Зоговолок"></el-input>
                 </el-form-item>
-                <el-form-item prop="products">
-                  <p class="text-light font-semibold">Продукт</p>
-                  <el-select class="!w-full" v-model="add.products" multiple placeholder="Select">
-                    <el-option v-for="product in actualProducts" :key="product.id" :label="product.name.ru"
-                      :value="product.id">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-                <div class="flex justify-end mt-4 pt-4 space-x-2 border-t border-dark-3">
-                  <button @click.prevent="showcaseModal = false"
-                    class="bg-dark-3 font-semibold rounded-lg py-2 px-4 text-light">Отмена</button>
-                  <button @click.prevent="updateShowcaseProduct"
-                    class="bg-blue font-semibold rounded-lg py-2 px-4 text-light hover:bg-blue-2 duration-200 flex items-center">
-                    <i class="el-icon-circle-plus text-lg mr-1"></i>
-                    Сохранить
-                  </button>
-                </div>
-              </el-form>
-            </el-tab-pane>
-          </el-tabs>
-
+              </el-tab-pane>
+            </el-tabs>
+            <el-form-item prop="products">
+              <p class="text-light font-semibold">Продукт</p>
+              <el-select class="!w-full" v-model="add.products" multiple placeholder="Select">
+                <el-option v-for="product in actualProducts" :key="product.id" :label="product.name.ru"
+                  :value="product.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <div class="flex justify-end mt-4 pt-4 space-x-2 border-t border-dark-3">
+              <button @click.prevent="showcaseModal = false"
+                class="bg-dark-3 font-semibold rounded-lg py-2 px-4 text-light">Отмена</button>
+              <button @click.prevent="updateShowcaseProduct"
+                class="bg-blue font-semibold rounded-lg py-2 px-4 text-light hover:bg-blue-2 duration-200 flex items-center">
+                <i class="el-icon-circle-plus text-lg mr-1"></i>
+                Сохранить
+              </button>
+            </div>
+          </el-form>
         </div>
       </el-dialog>
       <button @click="showcaseModal = true"
@@ -104,7 +84,7 @@
                 </td>
                 <td class="px-3.5 py-2.5 border-y border-dark-3 text-center">
                   <div class="relative space-x-1">
-                    <el-popconfirm  @confirm="removeProduct(index)" title="Вы уверены, что хотите удалить?">
+                    <el-popconfirm @confirm="removeProduct(index)" title="Вы уверены, что хотите удалить?">
                       <button slot="reference" class="w-8 h-8 rounded-lg bg-dark-3 hover:text-red-500 duration-200">
                         <i class="el-icon-delete"></i>
                       </button>
@@ -206,7 +186,7 @@ export default {
             position: filteredProducts.length + 1
           })
         }
-        filteredProducts =  filteredProducts.filter((item) => this.add.products.includes(item.id))
+        filteredProducts = filteredProducts.filter((item) => this.add.products.includes(item.id))
       })
       const response = await this.updateShowcase({
         id: this.showcase.id,
@@ -235,18 +215,16 @@ export default {
       }
     },
     updateShowcaseProduct() {
-      this.$refs.updateShowcaseModal.validate((valid) => {
-        this.$refs.updateShowcaseModal2.validate(async (valid2) => {
-          if (valid && valid2) {
-            await this.updateShowcaseHandler()
-          } else {
-            this.$notify({
-              title: 'Error',
-              message: 'Please fill all required fields',
-              type: 'error'
-            });
-          }
-        })
+      this.$refs.updateShowcaseModal.validate(async (valid) => {
+        if (valid) {
+          await this.updateShowcaseHandler()
+        } else {
+          this.$notify({
+            title: 'Error',
+            message: 'Please fill all required fields',
+            type: 'error'
+          });
+        }
       })
     },
     async removeProduct(index) {
