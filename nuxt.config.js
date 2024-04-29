@@ -12,7 +12,7 @@ export default {
   },
 
   loading: {
-    color: '#3B82F6'
+    color: '#3B82F6',
   },
 
   head: {
@@ -31,15 +31,20 @@ export default {
 
   css: ['element-ui/lib/theme-chalk/index.css', '~/assets/css/main.css'],
 
-  plugins: ['~/plugins/element-ui', '~/plugins/axios', '~/plugins/apexchart', '~/plugins/teleport', '~/plugins/vuedraggable'],
+  plugins: [
+    '~/plugins/element-ui',
+    '~/plugins/axios',
+    '~/plugins/apexchart',
+    '~/plugins/teleport',
+    '~/plugins/vuedraggable',
+    '~/plugins/quill-editor',
+  ],
 
   components: true,
 
   buildModules: ['@nuxtjs/tailwindcss'],
 
-  modules: [
-    '@nuxtjs/axios',
-  ],
+  modules: ['@nuxtjs/axios'],
 
   axios: {
     baseURL: '/',

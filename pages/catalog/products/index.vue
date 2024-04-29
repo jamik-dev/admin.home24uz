@@ -2,6 +2,7 @@
   <main>
     <div class="p-6">
       <button
+        @click="$router.push('/catalog/products/add')"
         class="py-2 px-4 ml-auto rounded-lg bg-blue hover:bg-blue-2 duration-200 mb-3 text-sm font-semibold flex items-center">
         <i class="el-icon-circle-plus text-lg mr-1"></i>
         Добавить продукт
